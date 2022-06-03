@@ -13,10 +13,11 @@ import { StTableCellTemplatePipe } from './pipes/ng-st-table-cell-template.pipe'
         StTableCellDirective,
     ],
     imports: [
-        CommonModule
+        CommonModule,
     ],
     exports: [
-        NgStTableComponent
+        NgStTableComponent,
+        StTableCellDirective,
     ]
 })
 export class NgStTableModule { }

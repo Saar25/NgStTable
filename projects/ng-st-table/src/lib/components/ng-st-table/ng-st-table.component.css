@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: column;
     border: 1px solid black;
-    color: white;
+    overflow: hidden;
+    height: 100%;
 }
 
 .st-table-header,
@@ -11,11 +12,23 @@
     flex-direction: column;
 }
 
+.st-table-body {
+    flex-grow: 1;
+    overflow: auto;
+}
+
+.st-table-header {
+    margin-right: 15px;
+}
+
+.st-table-header-row,
 .st-table-row {
     display: flex;
     flex-direction: row;
 }
 
+.st-table-header-row:not(:last-of-type),
+.st-table-header-row:first-of-type,
 .st-table-row:not(:last-of-type),
 .st-table-row:first-of-type {
     border-bottom: 1px solid black;

@@ -1,0 +1,11 @@
+.app-container {
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+}
+
+.app-main {
+    flex-grow: 1;
+    padding: 50px;
+    overflow: auto;
+}
