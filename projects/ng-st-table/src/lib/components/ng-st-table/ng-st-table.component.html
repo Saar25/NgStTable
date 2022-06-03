@@ -1,0 +1,24 @@
+<div class="st-table-container">
+    <section class="st-table-header">
+        <article class="st-table-row">
+            <ng-container *ngFor="let column of columns">
+                <article class="st-table-cell" [ngStyle]="{flex: column.width || 1}">
+                    <span>{{column.title}}</span>
+                </article>
+            </ng-container>
+        </article>
+    </section>
+    <section class="st-table-body">
+        <ng-container *ngFor="let element of elements">
+            <article class="st-table-row">
+                <ng-container *ngFor="let column of columns">
+                    <article class="st-table-cell" [ngStyle]="{flex: column.width || 1}">
+                        <ng-template [ngTemplateOutlet]="column | stTableCellTemplate: templates"
+                            [ngTemplateOutletContext]="{ $implicit: element}">
+                        </ng-template>
+                    </article>
+                </ng-container>
+            </article>
+        </ng-container>
+    </section>
+</div>
