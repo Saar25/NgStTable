@@ -1,24 +1,46 @@
-# NgStTable
+# StTableLibrary
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
+Generic table for angular projects
 
-## Code scaffolding
+## How to use
 
-Run `ng generate component component-name --project NgStTable` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project NgStTable`.
-> Note: Don't forget to add `--project NgStTable` or else it will be added to the default project in your `angular.json` file. 
+Inside the component, initialize the elements and the columns of the table
 
-## Build
+```typescript
+    public readonly elements: StTableElement[] = [...Array(100)].map(a => ({
+        a: "Hello A",
+        b: "World B",
+        c: ":)) C",
+    }));
 
-Run `ng build NgStTable` to build the project. The build artifacts will be stored in the `dist/` directory.
+    public readonly columns: StTableColumn[] = [
+        {
+            slot: 'A',
+            title: 'First column',
+        },
+        {
+            slot: 'B',
+            title: 'Second column',
+            width: 2
+        },
+        {
+            slot: 'C',
+            title: 'Third column',
+        },
+    ];
+```
 
-## Publishing
-
-After building your library with `ng build NgStTable`, go to the dist folder `cd dist/ng-st-table` and run `npm publish`.
-
-## Running unit tests
-
-Run `ng test NgStTable` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+In the html, define how to display each of the slots
+```html
+    <st-table [columns]="columns" [elements]="elements">
+        <ng-template stTableCell="A" let-element>
+            <span>A is {{element.a}}</span>
+        </ng-template>
+        <ng-template stTableCell="B" let-element>
+            <span>B is {{element.b}}</span>
+        </ng-template>
+        <ng-template stTableCell="C" let-element>
+            <span>C is {{element.c}}</span>
+        </ng-template>
+    </st-table>
+```
