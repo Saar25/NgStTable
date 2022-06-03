@@ -100,6 +100,37 @@
           }
         }
       }
+    },
+    "NgStTable": {
+      "projectType": "library",
+      "root": "projects/ng-st-table",
+      "sourceRoot": "projects/ng-st-table/src",
+      "prefix": "NgSt",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ng-st-table/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ng-st-table/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ng-st-table/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-st-table/src/test.ts",
+            "tsConfig": "projects/ng-st-table/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-st-table/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "StTableLibrary"
