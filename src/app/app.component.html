@@ -1,14 +1,25 @@
 <div class="app-container">
     <main class="app-main">
-        <st-table [columns]="columns" [elements]="elements">
-            <ng-template stTableCell="A" let-element>
-                <span>A - {{element.a}}</span>
+        <st-table [columns]="columns" [elements]="elements | async">
+            <ng-template stTableCell="name" let-element>
+                <span>{{element.name.common}}</span>
             </ng-template>
-            <ng-template stTableCell="B" let-element>
-                <span>B - {{element.b}}</span>
+            <ng-template stTableCell="population" let-element>
+                <span>{{element.population | number:'1.0':'en-US'}} people</span>
             </ng-template>
-            <ng-template stTableCell="C" let-element>
-                <span>C - {{element.c}}</span>
+            <ng-template stTableCell="languages" let-element>
+                <span>{{Object.values(element.languages).join(', ')}}</span>
+            </ng-template>
+            <ng-template stTableCell="region" let-element>
+                <span>{{element.region}}, {{element.subregion}}</span>
+            </ng-template>
+            <ng-template stTableCell="flag" let-element>
+                <img *ngIf="element.flags.png || element.flags.svg" class="table-cell-image"
+                    [src]="element.flags.png || element.flags.svg" loading="lazy">
+            </ng-template>
+            <ng-template stTableCell="symbol" let-element>
+                <img *ngIf="element.coatOfArms.png || element.coatOfArms.svg" class="table-cell-image"
+                    [src]="element.coatOfArms.png || element.coatOfArms.svg" loading="lazy">
             </ng-template>
         </st-table>
     </main>

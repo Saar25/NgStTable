@@ -9,3 +9,9 @@
     padding: 50px;
     overflow: auto;
 }
+
+.table-cell-image {
+    width: 90px;
+    height: 60px;
+    filter: drop-shadow(0 0 10px black);
+}

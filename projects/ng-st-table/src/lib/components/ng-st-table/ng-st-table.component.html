@@ -1,7 +1,7 @@
 <div class="st-table-container">
     <section class="st-table-header">
         <article class="st-table-header-row">
-            <ng-container *ngFor="let column of columns">
+            <ng-container *ngFor="let column of columns || []">
                 <article class="st-table-cell" [ngStyle]="{flex: column.width || 1}">
                     <span>{{column.title}}</span>
                 </article>
@@ -9,11 +9,11 @@
         </article>
     </section>
     <section class="st-table-body">
-        <ng-container *ngFor="let element of elements">
+        <ng-container *ngFor="let element of elements || []">
             <article class="st-table-row">
                 <ng-container *ngFor="let column of columns">
                     <article class="st-table-cell" [ngStyle]="{flex: column.width || 1}">
-                        <ng-template [ngTemplateOutlet]="column | stTableCellTemplate: templates"
+                        <ng-template [ngTemplateOutlet]="(column | stTableCellTemplate: templates) || notFound"
                             [ngTemplateOutletContext]="{ $implicit: element}">
                         </ng-template>
                     </article>
@@ -22,3 +22,7 @@
         </ng-container>
     </section>
 </div>
+
+<ng-template #notFound>
+    <span>Column slot not found!</span>
+</ng-template>

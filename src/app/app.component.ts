@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { StTableColumn, StTableElement } from 'NgStTable';
+import { StTableColumn } from 'NgStTable';
+import { from, Observable, shareReplay } from 'rxjs';
+import { Country } from './types/country.type';
 
 @Component({
     selector: 'st-table-root',
@@ -8,26 +10,38 @@ import { StTableColumn, StTableElement } from 'NgStTable';
 })
 export class AppComponent {
 
-    public readonly elements: StTableElement[] = [...Array(100)].map(a => ({
-        a: "Hello A",
-        b: "World B",
-        c: ":)) C",
-    }));
+    public readonly Object = Object;
+
+    private readonly countries$: Observable<Country[]> = from(fetch('https://restcountries.com/v3.1/all').then(res => res.json())).pipe(shareReplay(1))
+
+    public readonly elements: Observable<Country[]> = this.countries$;
 
     public readonly columns: StTableColumn[] = [
         {
-            slot: 'A',
-            title: 'First column',
+            slot: 'name',
+            title: 'Name',
         },
         {
-            slot: 'B',
-            title: 'Second column',
-            width: 2
+            slot: 'population',
+            title: 'Population',
         },
         {
-            slot: 'C',
-            title: 'Third column',
+            slot: 'languages',
+            title: 'Languages',
+        },
+        {
+            slot: 'region',
+            title: 'Region',
+        },
+        {
+            slot: 'flag',
+            title: 'Flag',
+            width: .5
+        },
+        {
+            slot: 'symbol',
+            title: 'Symbol',
+            width: .5
         },
     ];
-
 }

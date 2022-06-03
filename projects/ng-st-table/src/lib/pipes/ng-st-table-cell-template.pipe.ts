@@ -7,8 +7,8 @@ import { StTableColumn } from '../types';
 })
 export class StTableCellTemplatePipe<T> implements PipeTransform {
 
-    public transform(column: StTableColumn, templates: QueryList<StTableCellDirective>): TemplateRef<T> {
-        return templates.find(c => c.slot == column.slot)!!.template;
+    public transform(column: StTableColumn, templates: QueryList<StTableCellDirective>): TemplateRef<T> | undefined {
+        return templates.find(c => c.slot == column.slot)?.template;
     }
 
 }
