@@ -1,27 +1,46 @@
 # StTableLibrary
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.1.
+Generic table for angular projects
 
-## Development server
+## How to use
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Inside the component, initialize the elements and the columns of the table
 
-## Code scaffolding
+```typescript
+    public readonly elements: StTableElement[] = [...Array(100)].map(a => ({
+        a: "Hello A",
+        b: "World B",
+        c: ":)) C",
+    }));
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+    public readonly columns: StTableColumn[] = [
+        {
+            slot: 'A',
+            title: 'First column',
+        },
+        {
+            slot: 'B',
+            title: 'Second column',
+            width: 2
+        },
+        {
+            slot: 'C',
+            title: 'Third column',
+        },
+    ];
+```
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+In the html, define how to display each of the slots
+```html
+    <st-table [columns]="columns" [elements]="elements">
+        <ng-template stTableCell="A" let-element>
+            <span>A is {{element.a}}</span>
+        </ng-template>
+        <ng-template stTableCell="B" let-element>
+            <span>B is {{element.b}}</span>
+        </ng-template>
+        <ng-template stTableCell="C" let-element>
+            <span>C is {{element.c}}</span>
+        </ng-template>
+    </st-table>
+```
