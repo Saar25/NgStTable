@@ -133,5 +133,8 @@
       }
     }
   },
-  "defaultProject": "StTableLibrary"
+  "defaultProject": "StTableLibrary",
+  "cli": {
+    "analytics": false
+  }
 }
